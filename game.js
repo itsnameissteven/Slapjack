@@ -28,7 +28,7 @@ class Game {
 
     }
     dealCards() {
-        // this.shuffle(this.deck)
+        this.shuffle(this.deckOfCards)
         this.player1.hand = this.deckOfCards.splice(0, 26)
         this.player2.hand = this.deckOfCards.splice(0, 26)
         //removes half the deck to give to each player
