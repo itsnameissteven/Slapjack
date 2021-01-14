@@ -2,7 +2,23 @@ class Game {
     constructor() {
         this.player1 = new Player('Player 1')
         this.player2 = new Player('Player 2')
-        this.deckOfCards = [ {color:"blue", value:"01"}, {color:"blue", value:"02"}, {color:"blue", value:"03"}, {color:"blue", value:"04"}, {color:"blue", value:"05"}, {color:"blue", value:"06"}, {color:"blue", value:"07"}, {color:"blue", value:"08"}, {color:"blue", value:"09"}, {color:"blue", value:"10"}, {color:"blue", value:"jack"}, {color:"blue", value:"queen"}, {color:"blue", value:"king"}, {color:"green", value:"01"}, {color:"green", value:"02"}, {color:"green", value:"03"}, {color:"green", value:"04"}, {color:"green", value:"05"}, {color:"green", value:"06"}, {color:"green", value:"07"}, {color:"green", value:"08"}, {color:"green", value:"09"}, {color:"green", value:"10"}, {color:"green", value:"jack"}, {color:"green", value:"queen"}, {color:"green", value:"king"}, {color:"red", value:"01"}, {color:"red", value:"02"}, {color:"red", value:"03"}, {color:"red", value:"04"}, {color:"red", value:"05"}, {color:"red", value:"06"}, {color:"red", value:"07"}, {color:"red", value:"08"}, {color:"red", value:"09"}, {color:"red", value:"10"}, {color:"red", value:"jack"}, {color:"red", value:"queen"}, {color:"red", value:"king"}, {color:"gold", value:"01"}, {color:"gold", value:"02"}, {color:"gold", value:"03"}, {color:"gold", value:"04"}, {color:"gold", value:"05"}, {color:"gold", value:"06"}, {color:"gold", value:"07"}, {color:"gold", value:"08"}, {color:"gold", value:"09"}, {color:"gold", value:"10"}, {color:"gold", value:"jack"}, {color:"gold", value:"queen"}, {color:"gold", value:"king"}
+        this.deckOfCards = this.buildDeck()
+    }
+    buildDeck() {
+        var suits = ["blue", "red", "green", "gold"]
+        var values = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "jack", "queen", "king"]
+        var suitsNumber = 0
+        var valuesNumber = 0
+        var deck = []
+        for(var i = 0; i < 52; i++){
+            if (valuesNumber === 13) {
+                suitsNumber++
+                valuesNumber = 0
+            }
+            deck.push({color: suits[suitsNumber], value: values[valuesNumber]})
+            valuesNumber++
+        }
+        return deck
     }
     shuffle(deck) {
         var randomNumber;
