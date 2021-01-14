@@ -2,7 +2,7 @@ class Game {
     constructor() {
         this.player1 = new Player('Player 1')
         this.player2 = new Player('Player 2')
-        this.deckOfCards = [ 2, 3, 10 , 5, 6, 7, 8, 9, 4] 
+        this.deckOfCards = [ 1, 2, 3 , 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52] 
     }
     shuffle(deck) {
         var randomNumber;
@@ -22,14 +22,18 @@ class Game {
         }
         return deck;
     };
-    
+
     trackCardsInPot() {
         //remove the card from players hand
 
     }
     dealCards() {
-        ///split deck in half to distribute to each player || function to distribute only odd numbered elements to one player and even to the other number. (like a typical deal)
-
+        // this.shuffle(this.deck)
+        this.player1.hand = this.deckOfCards.splice(0, 26)
+        this.player2.hand = this.deckOfCards.splice(0, 26)
+        //removes half the deck to give to each player
+        // hand1 = array 0 -4
+        //hand2 = array 5-9
     }
     trackPlayerTurn() {
         //will only allow one player to discard at a time.
