@@ -44,7 +44,8 @@ class Game {
         this.player2.hand = this.deckOfCards.splice(0, 26)
         }
     trackPlayerTurn() {
-        //player can have a default value is turn set to true 
+        this.player1.hasNextTurn = !this.player1.hasNextTurn
+        this.player2.hasNextTurn = !this.player2.hasNextTurn
     }
     slapCards() {
         /// will allow for each player to slap cards 
