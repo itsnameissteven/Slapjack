@@ -34,7 +34,7 @@ class Game {
         //removes half the deck to give to each player
         // hand1 = array 0 -4
         //hand2 = array 5-9
-    }
+        }
     trackPlayerTurn() {
         //will only allow one player to discard at a time.
     }
