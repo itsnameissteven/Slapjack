@@ -1,7 +1,7 @@
 class Player {
-    constructor(player, wins, hand) {
+    constructor(player) {
         this.id = player
-        this.wins = wins
-        this.hand = hand
+        this.wins = 0
+        this.hand = []
     }
 }

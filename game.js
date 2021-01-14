@@ -1,13 +1,28 @@
 class Game {
-    constructor(player1, player2, deckOfCards) {
-        this.player1 = new Player()
-        this.player2 = new Player()
-        this.deckOfCards = []
+    constructor() {
+        this.player1 = new Player('Player 1')
+        this.player2 = new Player('Player 2')
+        this.deckOfCards = [ 2, 3, 10 , 5, 6, 7, 8, 9, 4] 
     }
-    shuffle() {
-        //should take deckDeckofCards and randomize them
-        //should take a players card and suffle them.
-    }
+    shuffle(deck) {
+        var randomNumber;
+        //create a random number variable. This will hold the random number we create
+        var temp;
+        // temp variale to hold the spot of the element
+        for (var i = deck.length - 1; i > 0; i--) {
+            //start with the last element of the array. since the first element is index 0 we need to subract 
+            randomNumber = Math.floor(Math.random() * (i + 1));
+            //creates a random number adds one to i since we subtracted from i in the for loop.  i cannot = 0 for the ranom function number to work
+            temp = deck[i];
+            //assign the last index to this temp holder
+            deck[i] = deck[randomNumber];
+            //reassign the last index to the random index
+            deck[randomNumber] = temp;
+            // reassignt the now empty index to what used to be the last
+        }
+        return deck;
+    };
+    
     trackCardsInPot() {
         //remove the card from players hand
 
