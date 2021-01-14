@@ -1,6 +1,6 @@
 class Game {
     constructor() {
-        this.player1 = new Player('Player 1');
+        this.player1 = new Player('Player 1', true);
         this.player2 = new Player('Player 2');
         this.deckOfCards = this.buildDeck();
     };
@@ -44,7 +44,7 @@ class Game {
         this.player2.hand = this.deckOfCards.splice(0, 26)
         }
     trackPlayerTurn() {
-        //will only allow one player to discard at a time.
+        //player can have a default value is turn set to true 
     }
     slapCards() {
         /// will allow for each player to slap cards 
