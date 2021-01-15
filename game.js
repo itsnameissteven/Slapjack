@@ -35,8 +35,10 @@ class Game {
     };
 
     trackCards() {
-        if(this.deckOfCards[0].value === "jack" || this.deckOfCards[1] || this.deckOfCards[2]) {
+        if((this.deckOfCards[0].value === "jack") || (this.deckOfCards[0].value === this.deckOfCards[1].value) || (this.deckOfCards[0].value === this.deckOfCards[2].value)) {
           this.slapIsLegal = true
+        } else {
+            this.slapIsLegal = false 
         }
     }
 
