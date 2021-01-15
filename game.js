@@ -3,8 +3,8 @@ class Game {
         this.player1 = new Player('Player 1', true);
         this.player2 = new Player('Player 2');
         this.deckOfCards = this.buildDeck();
+        this.slapIsLegal = false
     };
-
     buildDeck() {
         var suits = ["blue", "red", "green", "gold"];
         var values = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "jack", "queen", "king"];
@@ -34,10 +34,12 @@ class Game {
         return deck;
     };
 
-    trackCardsInPot() {
-        //remove the card from players hand
-
+    trackCards() {
+        if(this.deckOfCards[0].value === "jack" || this.deckOfCards[1] || this.deckOfCards[2]) {
+          this.slapIsLegal = true
+        }
     }
+
     dealCards() {
         this.shuffle(this.deckOfCards)
         this.player1.hand = this.deckOfCards.splice(0, 26)
@@ -47,10 +49,12 @@ class Game {
         this.player1.hasNextTurn = !this.player1.hasNextTurn
         this.player2.hasNextTurn = !this.player2.hasNextTurn
     }
-    slapCards() {
-        /// will allow for each player to slap cards 
-        //reads if it was illegal
-        //evaulates they type of win.
+    slapCards(player) {
+        this.trackCards()
+        if (this.slapIsLegal) {
+            player.hand = player.hand.concat(this.deckOfCards.splice(0, this.deckOfCards.length))
+            this.shuffle(player.hand)
+        }
     }
     updateWinCount() {
         //add to win count
