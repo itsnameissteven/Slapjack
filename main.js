@@ -6,20 +6,17 @@ var middleDeckImage = document.querySelector('.middle-deck')
 window.addEventListener('load', function() {
     game.dealCards();
 })
-window.addEventListener('keydown', function(event) {
-    playTopCard(event)
+window.addEventListener('keydown', function(e) {
+    playCard(e)
+    displayCard()
 })
 
-function playTopCard(event) {
-    if(event.key === 'q' && game.player1.hand.length > 0 && game.player1.hasNextTurn) {
-        game.deckOfCards.unshift(game.player1.playCard())
-        game.trackPlayerTurn()
-        displayCard()
+function playCard(e){
+    if (e.key === 'q') {
+        game.addToCentralDeck(game.player1)
     }
-    if(event.key === 'p' && game.player2.hand.length > 0 && game.player2.hasNextTurn) {
-        game.deckOfCards.unshift(game.player2.playCard())
-        game.trackPlayerTurn()
-        displayCard()
+    if (e.key === 'p') {
+        game.addToCentralDeck(game.player2)
     }
 }
 

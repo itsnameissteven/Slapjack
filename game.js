@@ -21,7 +21,12 @@ class Game {
         }
         return deck;
     };
-
+    addToCentralDeck(player) {
+        if(player.hand.length > 0 && player.hasNextTurn) {
+            this.deckOfCards.unshift(player.playCard())
+            this.trackPlayerTurn()
+        }
+    }
     shuffle(deck) {
         var randomNumber;
         var temp;
