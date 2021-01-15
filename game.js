@@ -2,7 +2,7 @@ class Game {
     constructor() {
         this.player1 = new Player('Player 1', true);
         this.player2 = new Player('Player 2');
-        this.deckOfCards = this.buildDeck();
+        this.deckOfCards = new Card().buildCompleteDeck()
         this.slapIsLegal = false
     };
     buildDeck() {
