@@ -54,6 +54,15 @@ class Game {
         if (this.slapIsLegal) {
             player.hand = player.hand.concat(this.deckOfCards.splice(0, this.deckOfCards.length))
             this.shuffle(player.hand)
+        } else {
+            this.penalize(player)
+        }
+    }
+    penalize(player) {
+        if(player === this.player1){
+            this.player2.hand.push(this.player1.hand.shift())
+        } else{
+            this.player1.hand.push(this.player2.hand.shift())
         }
     }
     updateWinCount() {
