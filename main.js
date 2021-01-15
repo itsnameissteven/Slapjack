@@ -3,9 +3,9 @@ var game = new Game();
 var middleDeckImage = document.querySelector('.middle-deck')
 
 
-// window.addEventListener('load', function() {
-//     game.dealCards();
-// })
+window.addEventListener('load', function() {
+    game.dealCards();
+})
 window.addEventListener('keydown', function(e) {
     playCard(e)
     displayCard()
