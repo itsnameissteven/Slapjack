@@ -4,6 +4,7 @@ class Player {
         this.wins = 0
         this.hand = []
         this.hasNextTurn = playsFirst || false
+        this.wonSlap = false
     }
     playCard() {
         return this.hand.shift()
