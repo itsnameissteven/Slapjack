@@ -10,6 +10,7 @@ class Game {
         if(player.hand.length > 0 && player.hasNextTurn) {
             this.deckOfCards.unshift(player.playCard())
             this.trackPlayerTurn(player)
+            this.trackCards()
         }
     };
 
@@ -24,11 +25,16 @@ class Game {
     };
 
     trackCards() {
-        if((this.deckOfCards.length > 0 && this.deckOfCards[0].value === "jack") || (this.deckOfCards.length > 1 && this.deckOfCards[0].value === this.deckOfCards[1].value) || (this.deckOfCards.length > 2 && this.deckOfCards[0].value === this.deckOfCards[2].value)) {
-          this.slapIsLegal = true
-        } else {
+            if (this.deckOfCards[0].value === "jack"){
+                return this.slapIsLegal = true
+            } else if (this.deckOfCards.length >1 && this.deckOfCards[0].value === this.deckOfCards[1].value) {
+                return this.slapIsLegal = true
+            } else if (this.deckOfCards.length >2 && this.deckOfCards[0].value === this.deckOfCards[2].value) {
+                return this.slapIsLegal = true 
+            }
+    
             this.slapIsLegal = false 
-        }
+       
     };
 
     dealCards() {
@@ -57,7 +63,7 @@ class Game {
     }
 
     slapCards(player) {
-        this.trackCards()
+
         if (this.slapIsLegal) {
             player.hand = player.hand.concat(this.deckOfCards.splice(0, this.deckOfCards.length))
             this.shuffle(player.hand)
