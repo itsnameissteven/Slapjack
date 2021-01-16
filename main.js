@@ -21,5 +21,7 @@ function playCard(e){
 }
 
 function displayCard() {
-    middleDeckImage.src = `assets/${game.deckOfCards[0].color}-${game.deckOfCards[0].value}.png`
+    if (game.deckOfCards.length > 0) {
+        middleDeckImage.src = `assets/${game.deckOfCards[0].color}-${game.deckOfCards[0].value}.png`
+    }
 }
