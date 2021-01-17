@@ -9,6 +9,7 @@ window.addEventListener('load', function() {
 window.addEventListener('keydown', function(e) {
     activatePlayer(e)
     stealCards(e)
+    displayWinner(e)
     displayCard()
 })
 
@@ -34,5 +35,13 @@ function displayCard() {
         middleDeckImage.src = `assets/${game.deckOfCards[0].color}-${game.deckOfCards[0].value}.png`
     } else {
         middleDeckImage.src = `assets/back.png`
+    }
+}
+function displayWinner(){
+    if(!game.winner){
+        return
+    } else {
+        document.querySelector('h1').innerText = `${game.winner} wins!`
+        
     }
 }

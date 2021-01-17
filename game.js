@@ -6,6 +6,7 @@ class Game {
         this.slapIsLegal = false
         this.typeOfSlap; 
         this.nearEndOfGame = false
+        this.winner;
     };
 
     addToCentralDeck(activePlayer, inactivePlayer) {
@@ -59,27 +60,31 @@ class Game {
     
     slapCards(activePlayer, inactivePlayer) {
         if(this.nearEndOfGame){
-            this.attemptWin(activePlayer, inactivePlayer)
-            return
-        }
-        if (this.slapIsLegal) {
-            activePlayer.hand = activePlayer.hand.concat(this.deckOfCards.splice(0, this.deckOfCards.length))
-            this.shuffle(activePlayer.hand)
-            this.switchPlayerTurn(activePlayer, inactivePlayer)
+            this.attemptWin(activePlayer, inactivePlayer);
+            return;
+        } else if (this.slapIsLegal) {
+            this.addCardsToWinnersHand(activePlayer);
+            this.shuffle(activePlayer.hand);
+            this.switchPlayerTurn(activePlayer, inactivePlayer);
         } else {
-            this.penalize(activePlayer, inactivePlayer)
-        }
+            this.penalize(activePlayer, inactivePlayer);
+        };
     };
+
+    addCardsToWinnersHand(activePlayer){
+        activePlayer.hand = activePlayer.hand.concat(this.deckOfCards.splice(0, this.deckOfCards.length));
+    }
     attemptWin(activePlayer, inactivePlayer){
-        if(this.typeOfSlap === 'SLAPJACK' && inactivePlayer.hand.length === 0){
-            console.log('you win')
-        }else {
+        if(this.typeOfSlap !== "SLAPJACK") {
             this.penalize(activePlayer, inactivePlayer)
+        } if(this.typeOfSlap === 'SLAPJACK'){
+            this.addCardsToWinnersHand(activePlayer)
+            this.updateWinCount(activePlayer);
         }
     }
     penalize(activePlayer, inactivePlayer) {
         if(activePlayer.hand.length === 0) {
-            inactivePlayer.wonGame = true
+            this.winner = inactivePlayer.id
             return
         }
             inactivePlayer.hand.push(activePlayer.hand.shift())
@@ -92,8 +97,10 @@ class Game {
         }
         console.log(this.nearEndOfGame)
     }
-    updateWinCount(player) {
-
+    updateWinCount(activePlayer) {
+        if(activePlayer.hand.length === 52){
+            this.winner = activePlayer.id
+        }
     }
     resetDeck() {
         /// reshuffle deck and deal  
