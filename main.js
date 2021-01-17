@@ -1,6 +1,7 @@
 var game = new Game();
 
 var middleDeckImage = document.querySelector('.middle-deck')
+var gameDecks = document.querySelectorAll('.deck')
 
 
 window.addEventListener('load', function() {
@@ -32,11 +33,10 @@ function stealCards(e) {
 
 function displayCard() {
     if (game.deckOfCards.length > 0) {
-        removeClass(middleDeckImage)
         middleDeckImage.src = `assets/${game.deckOfCards[0].color}-${game.deckOfCards[0].value}.png`
-    } else {
-        addClass(middleDeckImage)
+        middleDeckImage.alt = `${game.deckOfCards[0].color} ${game.deckOfCards[0].value}`
     }
+        toggleHiddenDecks();
 }
 function displayWinner(){
     if(!game.winner){
@@ -46,6 +46,17 @@ function displayWinner(){
         
     }
 }
+function toggleHiddenDecks() {
+    decks = [game.player1.hand, game.deckOfCards, game.player2.hand]
+    for(var i =0; i < decks.length; i++){
+        if(decks[i].length === 0) {
+            addClass(gameDecks[i])
+        }else {
+            removeClass(gameDecks[i])
+        }
+    }
+}
+
 function removeClass(element){
     element.classList.remove('hidden')
 }
