@@ -4,14 +4,18 @@ class Game {
         this.player2 = new Player('Player 2');
         this.deckOfCards = new Card().buildCompleteDeck()
         this.slapIsLegal = false
+        this.typeOfSlap; 
+        this.nearEndOfGame = false
     };
 
-    addToCentralDeck(player) {
-        if(player.hand.length > 0 && player.hasNextTurn) {
-            this.deckOfCards.unshift(player.playCard())
-            this.trackPlayerTurn()
+    addToCentralDeck(activePlayer, inactivePlayer) {
+        if(activePlayer.hand.length > 0 && activePlayer.hasNextTurn) {
+            this.deckOfCards.unshift(activePlayer.playCard())
+            this.switchPlayerTurn(activePlayer, inactivePlayer)
+            this.trackCards()
         }
-    }
+    };
+    
     shuffle(deck) {
         for (var i = deck.length - 1; i > 0; i--) { 
             var randomNumber = Math.floor(Math.random() * (i + 1));
@@ -23,40 +27,65 @@ class Game {
     };
 
     trackCards() {
-        if((this.deckOfCards[0].value === "jack") || (this.deckOfCards[0].value === this.deckOfCards[1].value) || (this.deckOfCards[0].value === this.deckOfCards[2].value)) {
-          this.slapIsLegal = true
-        } else {
-            this.slapIsLegal = false 
-        }
-    }
+            if (this.deckOfCards[0].value === "jack"){
+                this.slapIsLegal = true
+                this.typeOfSlap = "SLAPJACK"
+            } else if (this.deckOfCards.length > 1 && this.deckOfCards[0].value === this.deckOfCards[1].value) {
+                this.slapIsLegal = true
+                this.typeOfSlap = "DOUBLE"
+            } else if (this.deckOfCards.length > 2 && this.deckOfCards[0].value === this.deckOfCards[2].value) {
+                this.slapIsLegal = true 
+                this.typeOfSlap = "SANDWICH"
+            } else {
+                this.slapIsLegal = false 
+                this.typeOfSlap = "ILLEGAL"
+            }
+    };
 
     dealCards() {
         this.shuffle(this.deckOfCards)
         this.player1.hand = this.deckOfCards.splice(0, 26)
         this.player2.hand = this.deckOfCards.splice(0, 26)
+    };
+
+    switchPlayerTurn(activePlayer, inactivePlayer) {
+        if(!activePlayer.hasNextTurn) {
+            return
         }
-    trackPlayerTurn() {
-        this.player1.hasNextTurn = !this.player1.hasNextTurn
-        this.player2.hasNextTurn = !this.player2.hasNextTurn
+        activePlayer.hasNextTurn = !activePlayer.hasNextTurn
+        inactivePlayer.hasNextTurn = !inactivePlayer.hasNextTurn
+        this.fixPlayerTurn(activePlayer, inactivePlayer)
+    };
+
+    fixPlayerTurn(activePlayer, inactivePlayer) {
+        if (activePlayer.hand.length === 0) {
+            activePlayer.hasNextTurn = false
+            inactivePlayer.hasNextTurn = true
+        } 
     }
-    slapCards(player) {
-        this.trackCards()
+    
+    slapCards(activePlayer, inactivePlayer) {
+        // if(this.nearEndOfGame){
+        //     this.loseGame(player)
+        // }
         if (this.slapIsLegal) {
-            player.hand = player.hand.concat(this.deckOfCards.splice(0, this.deckOfCards.length))
-            this.shuffle(player.hand)
+            activePlayer.hand = activePlayer.hand.concat(this.deckOfCards.splice(0, this.deckOfCards.length))
+            this.shuffle(activePlayer.hand)
+            this.switchPlayerTurn(activePlayer, inactivePlayer)
         } else {
-            this.penalize(player)
+            this.penalize(activePlayer, inactivePlayer)
         }
-    }
-    penalize(player) {
-        if(player === this.player1){
-            this.player2.hand.push(this.player1.hand.shift())
-        } else{
-            this.player1.hand.push(this.player2.hand.shift())
+    };
+    penalize(activePlayer, inactivePlayer) {
+        if(activePlayer.hand.length === 0) {
+            inactivePlayer.wonGame = true
+            return
         }
-    }
-    updateWinCount() {
-        //add to win count
+            activePlayer.hand.push(inactivePlayer.hand.shift())
+    };
+
+    updateWinCount(player) {
+
     }
     resetDeck() {
         /// reshuffle deck and deal  
