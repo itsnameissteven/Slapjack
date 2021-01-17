@@ -6,6 +6,7 @@ class Game {
         this.slapIsLegal = false
         this.typeOfSlap; 
         this.nearEndOfGame = false
+        this.winner;
     };
 
     addToCentralDeck(activePlayer, inactivePlayer) {
@@ -14,6 +15,7 @@ class Game {
             this.switchPlayerTurn(activePlayer, inactivePlayer)
             this.trackCards()
         }
+        this.trackEndGame()
     };
     
     shuffle(deck) {
@@ -49,43 +51,56 @@ class Game {
     };
 
     switchPlayerTurn(activePlayer, inactivePlayer) {
-        if(!activePlayer.hasNextTurn) {
+        if(!activePlayer.hasNextTurn || inactivePlayer.hand.length === 0) {
             return
         }
         activePlayer.hasNextTurn = !activePlayer.hasNextTurn
         inactivePlayer.hasNextTurn = !inactivePlayer.hasNextTurn
-        this.fixPlayerTurn(activePlayer, inactivePlayer)
     };
-
-    fixPlayerTurn(activePlayer, inactivePlayer) {
-        if (activePlayer.hand.length === 0) {
-            activePlayer.hasNextTurn = false
-            inactivePlayer.hasNextTurn = true
-        } 
-    }
     
     slapCards(activePlayer, inactivePlayer) {
-        // if(this.nearEndOfGame){
-        //     this.loseGame(player)
-        // }
-        if (this.slapIsLegal) {
-            activePlayer.hand = activePlayer.hand.concat(this.deckOfCards.splice(0, this.deckOfCards.length))
-            this.shuffle(activePlayer.hand)
-            this.switchPlayerTurn(activePlayer, inactivePlayer)
+        if(this.nearEndOfGame){
+            this.attemptWin(activePlayer, inactivePlayer);
+            return;
+        } else if (this.slapIsLegal) {
+            this.addCardsToWinnersHand(activePlayer);
+            this.shuffle(activePlayer.hand);
+            this.switchPlayerTurn(activePlayer, inactivePlayer);
         } else {
-            this.penalize(activePlayer, inactivePlayer)
-        }
+            this.penalize(activePlayer, inactivePlayer);
+        };
     };
+
+    addCardsToWinnersHand(activePlayer){
+        activePlayer.hand = activePlayer.hand.concat(this.deckOfCards.splice(0, this.deckOfCards.length));
+    }
+    attemptWin(activePlayer, inactivePlayer){
+        if(this.typeOfSlap !== "SLAPJACK") {
+            this.penalize(activePlayer, inactivePlayer)
+        } if(this.typeOfSlap === 'SLAPJACK'){
+            this.addCardsToWinnersHand(activePlayer)
+            this.updateWinCount(activePlayer);
+        }
+    }
     penalize(activePlayer, inactivePlayer) {
         if(activePlayer.hand.length === 0) {
-            inactivePlayer.wonGame = true
+            this.winner = inactivePlayer.id
             return
         }
-            activePlayer.hand.push(inactivePlayer.hand.shift())
+            inactivePlayer.hand.push(activePlayer.hand.shift())
     };
-
-    updateWinCount(player) {
-
+    trackEndGame(){
+        if(this.player1.hand.length === 0 || this.player2.hand.length === 0){
+            this.nearEndOfGame = true
+        } else {
+            this.nearEndOfGame = false
+        }
+        console.log(this.nearEndOfGame)
+    }
+    updateWinCount(activePlayer) {
+        if(activePlayer.hand.length === 52){
+            this.winner = activePlayer.id
+        }
     }
     resetDeck() {
         /// reshuffle deck and deal  
