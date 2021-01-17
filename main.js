@@ -14,18 +14,18 @@ window.addEventListener('keydown', function(e) {
 
 function activatePlayer(e){
     if (e.key === 'q') {
-        game.addToCentralDeck(game.player1)
+        game.addToCentralDeck(game.player1, game.player2)
     }
     if (e.key === 'p') {
-        game.addToCentralDeck(game.player2)
+        game.addToCentralDeck(game.player2, game.player1)
     }
 }
 function stealCards(e) {
     if (e.key === 'f') {
-       game.slapCards(game.player1)
+       game.slapCards(game.player1, game.player2)
     }
     if (e.key === 'j') {
-        game.slapCards(game.player2)
+        game.slapCards(game.player2, game.player1)
     }
 }
 
