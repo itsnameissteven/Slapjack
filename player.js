@@ -1,7 +1,13 @@
 class Player {
-    constructor(player, wins, hand) {
+    constructor(player, playsFirst) {
         this.id = player
-        this.wins = wins
-        this.hand = hand
+        this.wins = 0
+        this.hand = []
+        this.hasNextTurn = playsFirst || false
+        this.wonGame;
     }
+    playCard() {
+        return this.hand.shift()
+    }
+
 }
