@@ -14,7 +14,7 @@ class Game {
             this.switchPlayerTurn(activePlayer, inactivePlayer)
             this.trackCards()
         }
-
+        this.trackEndGame()
     };
     
     shuffle(deck) {
@@ -58,9 +58,10 @@ class Game {
     };
     
     slapCards(activePlayer, inactivePlayer) {
-        // if(this.nearEndOfGame){
-        //     this.loseGame(player)
-        // }
+        if(this.nearEndOfGame){
+            this.attemptWin(activePlayer, inactivePlayer)
+            return
+        }
         if (this.slapIsLegal) {
             activePlayer.hand = activePlayer.hand.concat(this.deckOfCards.splice(0, this.deckOfCards.length))
             this.shuffle(activePlayer.hand)
@@ -69,7 +70,13 @@ class Game {
             this.penalize(activePlayer, inactivePlayer)
         }
     };
-    
+    attemptWin(activePlayer, inactivePlayer){
+        if(this.typeOfSlap === 'SLAPJACK' && inactivePlayer.hand.length === 0){
+            console.log('you win')
+        }else {
+            this.penalize(activePlayer, inactivePlayer)
+        }
+    }
     penalize(activePlayer, inactivePlayer) {
         if(activePlayer.hand.length === 0) {
             inactivePlayer.wonGame = true
@@ -77,7 +84,14 @@ class Game {
         }
             inactivePlayer.hand.push(activePlayer.hand.shift())
     };
-
+    trackEndGame(){
+        if(this.player1.hand.length === 0 || this.player2.hand.length === 0){
+            this.nearEndOfGame = true
+        } else {
+            this.nearEndOfGame = false
+        }
+        console.log(this.nearEndOfGame)
+    }
     updateWinCount(player) {
 
     }
