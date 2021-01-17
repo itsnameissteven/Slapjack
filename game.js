@@ -14,6 +14,7 @@ class Game {
             this.switchPlayerTurn(activePlayer, inactivePlayer)
             this.trackCards()
         }
+
     };
     
     shuffle(deck) {
@@ -49,20 +50,12 @@ class Game {
     };
 
     switchPlayerTurn(activePlayer, inactivePlayer) {
-        if(!activePlayer.hasNextTurn) {
+        if(!activePlayer.hasNextTurn || inactivePlayer.hand.length === 0) {
             return
         }
         activePlayer.hasNextTurn = !activePlayer.hasNextTurn
         inactivePlayer.hasNextTurn = !inactivePlayer.hasNextTurn
-        this.fixPlayerTurn(activePlayer, inactivePlayer)
     };
-
-    fixPlayerTurn(activePlayer, inactivePlayer) {
-        if (activePlayer.hand.length === 0) {
-            activePlayer.hasNextTurn = false
-            inactivePlayer.hasNextTurn = true
-        } 
-    }
     
     slapCards(activePlayer, inactivePlayer) {
         // if(this.nearEndOfGame){
@@ -76,12 +69,13 @@ class Game {
             this.penalize(activePlayer, inactivePlayer)
         }
     };
+    
     penalize(activePlayer, inactivePlayer) {
         if(activePlayer.hand.length === 0) {
             inactivePlayer.wonGame = true
             return
         }
-            activePlayer.hand.push(inactivePlayer.hand.shift())
+            inactivePlayer.hand.push(activePlayer.hand.shift())
     };
 
     updateWinCount(player) {
