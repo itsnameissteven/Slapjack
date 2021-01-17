@@ -9,5 +9,4 @@ class Player {
     playCard() {
         return this.hand.shift()
     }
-
 }

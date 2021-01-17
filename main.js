@@ -32,9 +32,10 @@ function stealCards(e) {
 
 function displayCard() {
     if (game.deckOfCards.length > 0) {
+        removeClass(middleDeckImage)
         middleDeckImage.src = `assets/${game.deckOfCards[0].color}-${game.deckOfCards[0].value}.png`
     } else {
-        middleDeckImage.src = `assets/back.png`
+        addClass(middleDeckImage)
     }
 }
 function displayWinner(){
@@ -44,4 +45,10 @@ function displayWinner(){
         document.querySelector('h1').innerText = `${game.winner} wins!`
         
     }
+}
+function removeClass(element){
+    element.classList.remove('hidden')
+}
+function addClass(element) {
+    element.classList.add('hidden')
 }
