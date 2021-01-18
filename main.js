@@ -3,10 +3,13 @@ var game = new Game();
 var middleDeckImage = document.querySelector('.middle-deck')
 var gameDecks = document.querySelectorAll('.deck')
 var mainHeader = document.querySelector('h1')
+var playerOneWinCount = document.querySelector('.player-one-win-count')
+var playerTwoWinCount = document.querySelector('.player-two-win-count')
 
 
 window.addEventListener('load', function() {
     game.dealCards();
+    displayWinTotal();
 })
 window.addEventListener('keydown', function(e) {
     activatePlayer(e)
@@ -41,11 +44,18 @@ function displayCard() {
         middleDeckImage.alt = `${game.deckOfCards[0].color} ${game.deckOfCards[0].value}`
     }
         toggleHiddenDecks();
-}
+};
+
 function displayWinner(){
     if(game.winner !== undefined){
         mainHeader.innerText = `${game.winner} wins!` 
     }
+};
+function displayWinTotal(){
+    game.player1.saveWinsToStorage()
+    game.player2.saveWinsToStorage()
+    playerOneWinCount.innerText = `${localStorage.getItem('Player 1')} wins`
+    playerTwoWinCount.innerText = `${localStorage.getItem('Player 2')} wins`
 }
 function displaySlapWinner(activePlayer, inactivePlayer){
     if(game.deckOfCards.length === 0) {

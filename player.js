@@ -10,6 +10,6 @@ class Player {
         return this.hand.shift()
     }
     saveWinsToStorage() {
-        localStorage.setItem('playerWins', this.wins)
+        localStorage.setItem(this.id, this.wins)
     }
 }
