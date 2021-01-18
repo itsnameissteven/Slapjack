@@ -16,6 +16,7 @@ class Game {
             this.trackCards()
         }
         this.trackEndGame()
+        this.returnCards(activePlayer, inactivePlayer)
     };
     
     shuffle(deck) {
@@ -97,7 +98,11 @@ class Game {
         } else {
             this.nearEndOfGame = false
         }
-        console.log(this.nearEndOfGame)
+    };
+    returnCards(activePlayer, inactivePlayer) {
+        if(activePlayer.hand.length === 0 && inactivePlayer.hand.length === 0) {
+            this.addCardsToWinnersHand(activePlayer);
+        }
     }
     updateWinCount(activePlayer) {
         if(activePlayer.hand.length === 52){
