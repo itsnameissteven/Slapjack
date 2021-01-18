@@ -110,6 +110,7 @@ class Game {
     returnCards(activePlayer, inactivePlayer) {
         if(activePlayer.hand.length === 0 && inactivePlayer.hand.length === 0) {
             this.addCardsToWinnersHand(activePlayer);
+            shuffle(activePlayer.hand)
         }
     }
     updateWinCount(activePlayer) {

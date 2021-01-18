@@ -9,4 +9,7 @@ class Player {
     playCard() {
         return this.hand.shift()
     }
+    saveWinsToStorage() {
+        localStorage.setItem('playerWins', this.wins)
+    }
 }
