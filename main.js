@@ -76,9 +76,9 @@ function addClass(element) {
 }
 
 function changeDeckColor() {
-    if(game.player1.hasNextTurn) {
-        middleDeckImage.classList.add('player-two-deck')
+    if (game.playedLastCard === "Player 1") {
+     middleDeckImage.classList.remove('player-two-deck')
     } else {
-        middleDeckImage.classList.remove('player-two-deck')
+        middleDeckImage.classList.add('player-two-deck')
     }
 }

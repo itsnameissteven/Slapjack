@@ -6,6 +6,7 @@ class Game {
         this.slapIsLegal = false
         this.typeOfSlap; 
         this.nearEndOfGame = false
+        this.playedLastCard;
         this.winner;
     };
 
@@ -14,6 +15,7 @@ class Game {
             this.deckOfCards.unshift(activePlayer.playCard())
             this.switchPlayerTurn(activePlayer, inactivePlayer)
             this.trackCards()
+            this.playedLastCard = activePlayer.id
         }
         this.trackEndGame()
         this.returnCards(activePlayer, inactivePlayer)
