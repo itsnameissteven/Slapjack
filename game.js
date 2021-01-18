@@ -50,7 +50,12 @@ class Game {
         this.player1.hand = this.deckOfCards.splice(0, 26)
         this.player2.hand = this.deckOfCards.splice(0, 26)
     };
-
+    fixPlayerturn(activePlayer, inactivePlayer) {
+        if(activePlayer.hand.length === 0) {
+            activePlayer.hasNextTurn = false
+            inactivePlayer.hasNextTurn = true
+        }
+    }
     switchPlayerTurn(activePlayer, inactivePlayer) {
         if(!activePlayer.hasNextTurn || inactivePlayer.hand.length === 0) {
             return
@@ -72,6 +77,7 @@ class Game {
         } else {
             this.penalize(activePlayer, inactivePlayer);
         };
+        this.fixPlayerturn(activePlayer, inactivePlayer)
     };
 
     addCardsToWinnersHand(activePlayer){
