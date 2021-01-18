@@ -13,6 +13,7 @@ window.addEventListener('keydown', function(e) {
     stealCards(e)
     displayWinner()
     displayCard()
+    changeDeckColor()
 })
 
 function activatePlayer(e){
@@ -25,12 +26,12 @@ function activatePlayer(e){
 }
 function stealCards(e) {
     if (e.key === 'f') {
-       game.slapCards(game.player1, game.player2)
        displaySlapWinner(game.player1, game.player2)
+       game.slapCards(game.player1, game.player2)
     }
     if (e.key === 'j') {
-        game.slapCards(game.player2, game.player1)
         displaySlapWinner(game.player2, game.player1)
+        game.slapCards(game.player2, game.player1)
     }
 }
 
@@ -47,7 +48,9 @@ function displayWinner(){
     }
 }
 function displaySlapWinner(activePlayer, inactivePlayer){
-    if(!game.slapIsLegal){
+    if(game.deckOfCards.length === 0) {
+        return
+    } else if(!game.slapIsLegal){
         mainHeader.innerText = `${game.typeOfSlap}! ${activePlayer.id} gives ${inactivePlayer.id} a card!`
     } else if(game.slapIsLegal){        
         mainHeader.innerText = `${game.typeOfSlap}! ${activePlayer.id} wins the hand!`
@@ -70,4 +73,12 @@ function removeClass(element){
 }
 function addClass(element) {
     element.classList.add('hidden')
+}
+
+function changeDeckColor() {
+    if(game.player1.hasNextTurn) {
+        middleDeckImage.classList.add('player-two-deck')
+    } else {
+        middleDeckImage.classList.remove('player-two-deck')
+    }
 }
