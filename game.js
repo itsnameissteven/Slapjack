@@ -59,7 +59,9 @@ class Game {
     };
     
     slapCards(activePlayer, inactivePlayer) {
-        if(this.nearEndOfGame){
+        if(this.deckOfCards.length === 0){
+            return
+        } if(this.nearEndOfGame){
             this.attemptWin(activePlayer, inactivePlayer);
             return;
         } else if (this.slapIsLegal) {

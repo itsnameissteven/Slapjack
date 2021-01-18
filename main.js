@@ -2,6 +2,7 @@ var game = new Game();
 
 var middleDeckImage = document.querySelector('.middle-deck')
 var gameDecks = document.querySelectorAll('.deck')
+var mainHeader = document.querySelector('h1')
 
 
 window.addEventListener('load', function() {
@@ -10,7 +11,7 @@ window.addEventListener('load', function() {
 window.addEventListener('keydown', function(e) {
     activatePlayer(e)
     stealCards(e)
-    displayWinner(e)
+    displayWinner()
     displayCard()
 })
 
@@ -25,9 +26,11 @@ function activatePlayer(e){
 function stealCards(e) {
     if (e.key === 'f') {
        game.slapCards(game.player1, game.player2)
+       displaySlapWinner(game.player1, game.player2)
     }
     if (e.key === 'j') {
         game.slapCards(game.player2, game.player1)
+        displaySlapWinner(game.player2, game.player1)
     }
 }
 
@@ -39,13 +42,18 @@ function displayCard() {
         toggleHiddenDecks();
 }
 function displayWinner(){
-    if(!game.winner){
-        return
-    } else {
-        document.querySelector('h1').innerText = `${game.winner} wins!`
-        
+    if(game.winner !== undefined){
+        mainHeader.innerText = `${game.winner} wins!` 
     }
 }
+function displaySlapWinner(activePlayer, inactivePlayer){
+    if(!game.slapIsLegal){
+        mainHeader.innerText = `${game.typeOfSlap}! ${activePlayer.id} gives ${inactivePlayer.id} a card!`
+    } else if(game.slapIsLegal){        
+        mainHeader.innerText = `${game.typeOfSlap}! ${activePlayer.id} wins the hand!`
+    }
+}
+
 function toggleHiddenDecks() {
     decks = [game.player1.hand, game.deckOfCards, game.player2.hand]
     for(var i =0; i < decks.length; i++){
