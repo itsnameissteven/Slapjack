@@ -1,7 +1,7 @@
 class Card {
     constructor() {
         this.suits = ["blue", "red", "green", "gold"];
-        this.values = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "jack", "queen", "king"];
+        this.values = ["ace", "02", "03", "04", "05", "06", "07", "08", "09", "10", "jack", "queen", "king"];
     }
     buildCompleteDeck() {
         var suitsIndex = 0;
