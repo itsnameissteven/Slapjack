@@ -2,7 +2,7 @@ var game = new Game();
 
 var middleDeckImage = document.querySelector('.middle-deck');
 var gameDecks = document.querySelectorAll('.deck');
-var mainHeader = document.querySelector('h1');
+var mainHeader = document.querySelector('header');
 var playerOneWinCount = document.querySelector('.player-one-win-count');
 var playerTwoWinCount = document.querySelector('.player-two-win-count');
 

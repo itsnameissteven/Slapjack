@@ -10,13 +10,13 @@ body, html, section{
     width: 100%;
 }
 
-h1, h3 {
+header, h1 {
     padding-top: 30px;
 }
-h1 {
+header {
     position: fixed;
     top:0;
-
+    font-size: 30px;
 }
 
 section {
@@ -34,11 +34,13 @@ article{
     height: 300px;
     width: auto;
     border-radius: 10px;
-    box-shadow: 0 0 30px rgb(255, 0, 128)
+    box-shadow: 0 0 30px rgb(255, 0, 128);
 }
-.middle-deck{
+.middle-container{
+    width: 200px;
     margin-bottom: 51px;
 }
+
 .player-two-deck {
     box-shadow: 0 0 30px rgb(0, 255, 213)
 }
