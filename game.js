@@ -52,12 +52,14 @@ class Game {
         this.player1.hand = this.deckOfCards.splice(0, 26)
         this.player2.hand = this.deckOfCards.splice(0, 26)
     };
+
     fixPlayerturn(activePlayer, inactivePlayer) {
         if(activePlayer.hand.length === 0) {
             activePlayer.hasNextTurn = false
             inactivePlayer.hasNextTurn = true
         }
-    }
+    };
+
     switchPlayerTurn(activePlayer, inactivePlayer) {
         if(!activePlayer.hasNextTurn || inactivePlayer.hand.length === 0) {
             return
@@ -84,7 +86,8 @@ class Game {
 
     addCardsToWinnersHand(activePlayer){
         activePlayer.hand = activePlayer.hand.concat(this.deckOfCards.splice(0, this.deckOfCards.length));
-    }
+    };
+
     attemptWin(activePlayer, inactivePlayer){
         if(this.typeOfSlap !== "SLAPJACK") {
             this.penalize(activePlayer, inactivePlayer)
@@ -92,14 +95,18 @@ class Game {
             this.addCardsToWinnersHand(activePlayer)
             this.updateWinCount(activePlayer);
         }
-    }
+    };
+
     penalize(activePlayer, inactivePlayer) {
         if(activePlayer.hand.length === 0) {
             this.winner = inactivePlayer.id
+            inactivePlayer.wins++
+            inactivePlayer.saveWinsToStorage()
             return
         }
             inactivePlayer.hand.push(activePlayer.hand.shift())
     };
+
     trackEndGame(){
         if(this.player1.hand.length === 0 || this.player2.hand.length === 0){
             this.nearEndOfGame = true
@@ -107,19 +114,24 @@ class Game {
             this.nearEndOfGame = false
         }
     };
+
     returnCards(activePlayer, inactivePlayer) {
         if(activePlayer.hand.length === 0 && inactivePlayer.hand.length === 0) {
             this.addCardsToWinnersHand(activePlayer);
-            shuffle(activePlayer.hand)
+            this.shuffle(activePlayer.hand);
         }
-    }
+    };
+
     updateWinCount(activePlayer) {
         if(activePlayer.hand.length === 52){
             this.winner = activePlayer.id
+            activePlayer.wins++
+            activePlayer.saveWinsToStorage()
         }
-    }
+    };
+    
     resetDeck() {
-        /// reshuffle deck and deal  
+
     }
 
 }
