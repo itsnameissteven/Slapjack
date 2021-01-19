@@ -23,8 +23,10 @@ window.addEventListener('keydown', function(e) {
 function activatePlayer(e){
     if (e.key === 'q') {
         game.addToCentralDeck(game.player1, game.player2);
+        clearHeader()
     } else if (e.key === 'p') {
-        game.addToCentralDeck(game.player2, game.player1);
+        game.addToCentralDeck(game.player2, game.player1);  
+        clearHeader() 
     };
 };
 
@@ -82,6 +84,10 @@ function toggleHiddenDecks() {
     };
 };
 
+function clearHeader(){
+    mainHeader.innerText = ""
+};
+
 function removeClass(element){
     element.classList.remove('hidden');
 }; 
@@ -92,7 +98,7 @@ function addClass(element) {
 
 function changeDeckColor() {
     if (game.playedLastCard === "Player 1") {
-     middleDeckImage.classList.remove('player-two-deck');
+        middleDeckImage.classList.remove('player-two-deck');
     } else {
         middleDeckImage.classList.add('player-two-deck');
     };

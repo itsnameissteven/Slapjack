@@ -18,6 +18,10 @@ body {
 h1, h3 {
     margin-top: 30px;
 }
+h1 {
+    position: fixed;
+    top:0;
+}
 
 section {
     margin-top: 20vh;
