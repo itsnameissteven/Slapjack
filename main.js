@@ -5,9 +5,12 @@ var gameDecks = document.querySelectorAll('.deck');
 var mainHeader = document.querySelector('header');
 var playerOneWinCount = document.querySelector('.player-one-win-count');
 var playerTwoWinCount = document.querySelector('.player-two-win-count');
+var button = document.querySelector('button')
+var welcomeMessage = document.querySelector('.welcome-message')
 
 
 window.addEventListener('load', function() {
+    checkSiteVisited();
     game.dealCards();
     displayWinTotal();
 });
@@ -19,6 +22,20 @@ window.addEventListener('keydown', function(e) {
     displayCard();
     changeDeckColor();
 });
+
+button.addEventListener('click', function() {
+    addClass(welcomeMessage);
+    saveSiteVisited();
+});
+
+function saveSiteVisited() {
+    localStorage.setItem('siteVisited', true)
+}
+function checkSiteVisited() {
+    if(localStorage.getItem('siteVisited')){
+        addClass(welcomeMessage)
+    }
+}
 
 function activatePlayer(e){
     if (e.key === 'q') {
