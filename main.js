@@ -18,7 +18,6 @@ window.addEventListener('keydown', function(e) {
     displayWinner();
     displayCard();
     changeDeckColor();
-    displayWinTotal(e);
 });
 
 function activatePlayer(e){
@@ -48,8 +47,10 @@ function displayCard() {
 };
 
 function displayWinner(){
-    if(!!game.winner){
+    if(game.winner !== null){
         mainHeader.innerText = `${game.winner} wins!`;
+        displayWinTotal()
+        game.resetGame()
     };
 };
 

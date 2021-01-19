@@ -7,7 +7,7 @@ class Game {
         this.typeOfSlap; 
         this.nearEndOfGame = false
         this.playedLastCard;
-        this.winner;
+        this.winner = null
     };
 
     addToCentralDeck(activePlayer, inactivePlayer) {
@@ -130,8 +130,10 @@ class Game {
         }
     };
     
-    resetDeck() {
-
+    resetGame() {
+        this.deckOfCards = this.deckOfCards.concat(this.player1.hand.splice(0, this.player1.hand.length), this.player2.hand.splice(0, this.player2.hand.length));
+        this.dealCards()
+        this.winner = null
     }
 
 }
