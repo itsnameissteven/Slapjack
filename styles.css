@@ -3,32 +3,62 @@
     margin: 0;
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    /* border: 1px solid red; */
-    color: plum;
+    color: #fff;
 }
-
-body, html{
-    height: 100vh;
+body, html, section{
+    height: 100%;
     width: 100%;
 }
-body {
-    background: linear-gradient(grey, black);
-}
 
-h1, h3 {
-    margin-top: 30px;
+header, h1 {
+    padding-top: 30px;
 }
-h1 {
+header {
     position: fixed;
     top:0;
+    font-size: 30px;
 }
 
 section {
-    margin-top: 20vh;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(#507105, #adb603, 25%,  #EEA400, 80%, #E933BF);
+}
+.welcome-message{
+    display:block;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    backdrop-filter: blur(5px)
+}
+p{
+    text-align: left;
+    width:50ch;
+    margin: 50px auto 0;
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+}
+.player-one-controls, .player-two-controls {
+    position: fixed;
+    width: fit-content;
+    margin: 40px 75px;
+}
+.player-two-controls {
+    right:0;
 }
 
+button{
+    margin: 50px;
+    height: 50px;
+    width: 200px;
+    font-size: 16px;
+    color: #000000;
+    border-radius: 5px;
+}
+.welcome-header{
+    display: block;
+}
 article{
     display: inline-block;
 }
@@ -37,11 +67,15 @@ article{
     height: 300px;
     width: auto;
     border-radius: 10px;
-    box-shadow: 0 0 30px rgb(66, 216, 253)
+    box-shadow: 0 0 30px rgb(255, 0, 128);
+}
+.middle-container{
+    width: 200px;
+    margin-bottom: 51px;
 }
 
 .player-two-deck {
-    box-shadow: 0 0 30px rgb(253, 66, 107)
+    box-shadow: 0 0 30px rgb(0, 255, 213)
 }
 
 .hidden{
