@@ -2,9 +2,9 @@
 
 ## Creator
 
-<img src="assets/readme_images/profile.png" style="width:100px; border-radius: 50%" alt="Steven Mancine" />
+<a href="https://github.com/itsnameissteven"><img src="assets/readme_images/profile.png" style="width:100px; border-radius: 50%" alt="Steven Mancine" /></a>
 
-[Steven Mancine](https://github.com/itsnameissteven)
+Steven Mancine
 
 ## Technologies
 
@@ -36,3 +36,9 @@
 * Local storage is used in two parts of this app.
 1. When the user clicks the continue button on the welcome page, to prevent the same message from showing again upon reload.
 2. For storage of player wins to persist data between reloads.
+
+## Future Considerations
+
+* Adding layers to card decks to indicate how many cards are in each pile. Players currently have no way to tell how many cards they are currently holding.
+* Adding input boxes on the welcome screen to prompt each player to enter a name. Player names can be entered into the DOM dynamically for a better user experience.
+* Alternate Gameplay rules. Egyptian rat screw is a very similar game that follows almost the same rules. At the welcome page users could be prompted to choose between which style they would like to play.
