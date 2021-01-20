@@ -55,14 +55,14 @@ class Game {
   };
 
   fixPlayerturn(activePlayer, inactivePlayer) {
-    if (activePlayer.hand.length === 0) {
+    if (!activePlayer.hand.length) {
       activePlayer.hasNextTurn = false;
       inactivePlayer.hasNextTurn = true;
     };
   };
 
   switchPlayerTurn(activePlayer, inactivePlayer) {
-    if (!activePlayer.hasNextTurn || inactivePlayer.hand.length === 0) {
+    if (!activePlayer.hasNextTurn || !inactivePlayer.hand.length) {
         return;
     };
 
@@ -71,7 +71,7 @@ class Game {
   };
     
   slapCards(activePlayer, inactivePlayer) {
-    if (this.deckOfCards.length === 0) {
+    if (!this.deckOfCards.length) {
       return;
     } else if(this.nearEndOfGame) {
       this.attemptWin(activePlayer, inactivePlayer);
@@ -101,7 +101,7 @@ class Game {
   };
 
   penalize(activePlayer, inactivePlayer) {
-    if (activePlayer.hand.length === 0) {
+    if (!activePlayer.hand.length) {
       this.winner = inactivePlayer.id;
       inactivePlayer.wins++;
       inactivePlayer.saveWinsToStorage();
@@ -112,7 +112,7 @@ class Game {
   };
 
   trackEndGame(){
-    if (this.player1.hand.length === 0 || this.player2.hand.length === 0) {
+    if (!this.player1.hand.length || !this.player2.hand.length) {
         this.nearEndOfGame = true;
     } else {
         this.nearEndOfGame = false;
@@ -120,7 +120,7 @@ class Game {
   };
 
   returnCards(activePlayer, inactivePlayer) {
-    if (activePlayer.hand.length === 0 && inactivePlayer.hand.length === 0) {
+    if (!activePlayer.hand.length && !inactivePlayer.hand.length) {
       this.addCardsToWinnersHand(activePlayer);
       this.shuffle(activePlayer.hand);
     };

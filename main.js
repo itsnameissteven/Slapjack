@@ -58,7 +58,7 @@ function stealCards(e) {
 };
 
 function displayCard() {
-  if (game.deckOfCards.length > 0) {
+  if (game.deckOfCards.length) {
     middleDeckImage.src = `assets/${game.deckOfCards[0].color}-${game.deckOfCards[0].value}.png`;
     middleDeckImage.alt = `${game.deckOfCards[0].color} ${game.deckOfCards[0].value}`;
   };
@@ -67,7 +67,7 @@ function displayCard() {
 };
 
 function displayWinner() {
-  if (!game.winner) {
+  if (game.winner !== null) {
     mainHeader.innerText = `${game.winner} wins!`;
     displayWinTotal();
     game.resetGame();
@@ -82,10 +82,10 @@ function displayWinTotal() {
 };
 
 function displaySlapWinner(activePlayer, inactivePlayer) {
-  if (game.deckOfCards.length === 0) {
+  if (!game.deckOfCards.length) {
     return;
   } else if(!game.slapIsLegal) {
-    mainHeader.innerText = `${game.typeOfSlap}! ${activePlayer.id} forfeits a card to ${inactivePlayer.id}`;
+    mainHeader.innerText = `${game.typeOfSlap} slap! ${activePlayer.id} forfeits a card to ${inactivePlayer.id}`;
   } else if(game.slapIsLegal) {        
     mainHeader.innerText = `${game.typeOfSlap}! ${activePlayer.id} wins the pile!`;
   };
@@ -94,7 +94,7 @@ function displaySlapWinner(activePlayer, inactivePlayer) {
 function toggleHiddenDecks() {
   decks = [game.player1.hand, game.deckOfCards, game.player2.hand];
   for(var i =0; i < decks.length; i++) {
-    if (decks[i].length === 0) {
+    if (!decks[i].length) {
       addClass(gameDecks[i]);
     } else {
       removeClass(gameDecks[i]);
