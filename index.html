@@ -1,47 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Slapjack</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href='./styles.css'>
-    </head>
-    <body>
-        <section class="welcome-message">
-            <h1 class='welcome-header'>Welcome to Slapjack!</h1>
-            <p>Game rules:<br>
-                Each player deals one card at a time from their hand into the center pile. Players can slap the center pile to win the cards if a jack, double (two consecutive cards), or sandwich (3-9-3 etc.) appears in the center deck. Each time a player wins the center pile cards are added to their hand and suffled.  If a player slaps illegally they must forfeit their top card to the bottom of their opponents hand. When a player runs out of cards the opposing player continues to add cards to the center pile one at a time. Now the only valid slap is when a jack appears. If the player with cards wins the slap they win. If the player who has no cards left wins the slap they win the pile and players alternate turns again.  If a player slaps the deck while holding no card they risk losing if the card slapped is not a jack. 
-            </p>
-            <p class="player-one-controls">
-                Player 1 Key Controls:<br>
-                Deal Card - q<br>
-                Slap Pile - f
-            </p>
-            <p class="player-two-controls">
-                Player 2 Key Controls:<br>
-                Deal Card - p<br>
-                Slap Pile - j
-            </p>
-            <button>CONTINUE</button>
-        </section>
-        <section>
-            <header></header>
-            <article>
-                <img class="deck player-one-deck stacks" src="assets/back.png" alt="back of playing card">
-                <h1 class="player-one-win-count"></h1>
-            </article>
-            <article class='middle-container'>
-                <img class="deck middle-deck hidden" src="" alt="">
-            </article>
-            <article>
-                <img class="deck player-two-deck" src="assets/back.png" alt="back of playing card">
-                <h1 class='player-two-win-count'></h1>
-            </article>
-        </section>
-    </body>
-    <script type="text/javascript" src="./card.js"></script>
-    <script type="text/javascript" src="./player.js"></script>
-    <script type="text/javascript" src="./game.js"></script>
-    <script type="text/javascript" src="./main.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <title>Slapjack</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href='./styles.css'>
+  </head>
+  <body>
+    <section class="welcome-message">
+      <h1 class='welcome-header'>Welcome to Slapjack!</h1>
+      <p> 
+        Game rules:<br>
+        Each player deals one card at a time from their hand into 
+        the center pile. Players can slap the center pile to win 
+        the cards if a jack, double (two consecutive cards), or 
+        sandwich (3-9-3 etc.) appears in the center deck. Each time a 
+        player wins a slap, the cards are added to their hand and 
+        suffled.  If a player slaps illegally they must forfeit their
+        top card to the bottom of their opponents hand. When a player
+        runs out of cards the opposing player continues to add cards 
+        to the center pile one at a time. Now the only valid slap is 
+        when a slapjack. If the player with cards wins the slap 
+        they win. If the player who has no cards left wins the slap 
+        they win the pile and players alternate turns again.  When a player
+        slaps the deck while holding no cards they lose if the card is not a 
+        jack.
+      </p>
+      <p class="player-one-controls">
+        Player 1 Key Controls:<br>
+        Deal Card - q<br>
+        Slap Pile - f
+      </p>
+      <p class="player-two-controls">
+          Player 2 Key Controls:<br>
+          Deal Card - p<br>
+          Slap Pile - j
+      </p>
+      <button>CONTINUE</button>
+    </section>
+    <section>
+      <header></header>
+      <article>
+        <img class="deck player-one-deck stacks" src="assets/back.png" alt="back of playing card">
+        <h1 class="player-one-win-count"></h1>
+      </article>
+      <article>
+        <img class="deck middle-deck hidden" src="" alt="">
+      </article>
+      <article>
+        <img class="deck player-two-deck" src="assets/back.png" alt="back of playing card">
+        <h1 class='player-two-win-count'></h1>
+      </article>
+    </section>
+  </body>
+  <script type="text/javascript" src="./card.js"></script>
+  <script type="text/javascript" src="./player.js"></script>
+  <script type="text/javascript" src="./game.js"></script>
+  <script type="text/javascript" src="./main.js"></script>
 </html>

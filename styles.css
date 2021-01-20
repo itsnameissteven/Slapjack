@@ -1,64 +1,76 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    color: #fff;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  color: #fff;
 }
-body, html, section{
-    height: 100%;
-    width: 100%;
+
+body, html, section {
+  height: 100%;
+  width: 100%;
 }
 
 header, h1 {
-    padding-top: 30px;
-}
-header {
-    position: fixed;
-    top:0;
-    font-size: 30px;
+  padding-top: 30px;
 }
 
-section {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: linear-gradient(#507105, #adb603, 25%,  #EEA400, 80%, #E933BF);
+/* Welcome page*/
+
+.welcome-message {
+  display:block;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  backdrop-filter: blur(5px);
 }
-.welcome-message{
-    display:block;
-    background: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    backdrop-filter: blur(5px)
+
+p {
+  text-align: left;
+  width:50ch;
+  margin: 50px auto 0;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 1px;
 }
-p{
-    text-align: left;
-    width:50ch;
-    margin: 50px auto 0;
-    font-size: 18px;
-    line-height: 1.5;
-    letter-spacing: 1px;
-}
+
 .player-one-controls, .player-two-controls {
-    position: fixed;
-    width: fit-content;
-    margin: 40px 75px;
+  position: fixed;
+  width: fit-content;
+  margin: 40px 75px;
 }
+
 .player-two-controls {
-    right:0;
+  right:0;
 }
 
 button{
-    margin: 50px;
-    height: 50px;
-    width: 200px;
-    font-size: 16px;
-    color: #000000;
-    border-radius: 5px;
+  margin: 50px;
+  height: 50px;
+  width: 200px;
+  font-size: 16px;
+  color: #000000;
+  border-radius: 5px;
 }
+
 .welcome-header{
-    display: block;
+  display: block;
 }
+
+/*Main page*/
+
+header {
+  position: fixed;
+  top:0;
+  font-size: 30px;
+}
+
+section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(#507105, #adb603, 25%,  #EEA400, 80%, #E933BF);
+}
+
 article{
     display: inline-block;
 }
@@ -69,13 +81,13 @@ article{
     border-radius: 10px;
     box-shadow: 0 0 30px rgb(255, 0, 128);
 }
-.middle-container{
-    width: 200px;
+
+.middle-deck{
     margin-bottom: 51px;
 }
 
 .player-two-deck {
-    box-shadow: 0 0 30px rgb(0, 255, 213)
+    box-shadow: 0 0 30px rgb(0, 255, 213);
 }
 
 .hidden{
